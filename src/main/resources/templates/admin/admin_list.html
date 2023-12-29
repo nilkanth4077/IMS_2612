@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin List</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #detailsButton {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        #approveButton {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        #rejectButton {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Email ID</th>
+        <th>Contact No</th>
+    </tr>
+    <!-- Iterate over the list of users -->
+    <tr th:each="admin : ${admins}">
+        <td th:text="${admin.name}"></td>
+        <td th:text="${admin.position}"></td>
+        <td th:text="${admin.emailId}"></td>
+        <td th:text="${admin.contactNo}"></td>
+        <td>
+            <button id="detailsButton"><a th:href="@{'/bisag/admin/admin_list/' + ${admin.adminId}}" class="btn btn-warning">Details</a></button>
+        </td>
+    </tr>
+</table>
+
+<script src="script.js"></script>
+<script th:inline="javascript">
+    function detailsAction(adminId) {
+        // Add logic to handle details action with userId
+        alert('Details for admin with ID ' + adminId);
+    }
+
+    
+</script>
+</body>
+</html>

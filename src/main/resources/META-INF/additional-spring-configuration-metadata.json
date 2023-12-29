@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "icard.filepath",
+    "type": "java.lang.String",
+    "description": "A description for 'icard.filepath'"
+  },
+  {
+    "name": "resume.filepath",
+    "type": "java.lang.String",
+    "description": "A description for 'resume.filepath'"
+  },
+  {
+    "name": "noc.filepath",
+    "type": "java.lang.String",
+    "description": "A description for 'noc.filepath'"
+  }
+]}
