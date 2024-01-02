@@ -63,6 +63,7 @@
         <th>Contact No</th>
         <th>Email ID</th>
         <th>College</th>
+        <th>Status</th>
         <th>Actions</th>
     </tr>
     <!-- Iterate over the list of users -->
@@ -72,6 +73,7 @@
         <td th:text="${intern.contactNo}"></td>
         <td th:text="${intern.email}"></td>
         <td th:text="${intern.collegeName}"></td>
+        <td th:text="${intern.status}"></td>
         <td>
             <button id="detailsButton"><a th:href="@{'/bisag/admin/intern_application/' + ${intern.id}}" class="btn btn-warning">Details</a></button>
         </td>

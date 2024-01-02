@@ -23,23 +23,14 @@ public class Admin {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "permanent_address")
-    private String permanentAddress;
-
-    @Column(name = "date_of_birth")
-    private String dateOfBirth;
-
-    @Column(name = "gender")
-    private String gender;
+    @Column(name = "location")
+    private String location;
 
     @Column(name = "contact_no")
     private Long contactNo;
 
     @Column(name = "email_id", unique = true)
     private String emailId;
-
-    @Column(name = "position")
-    private String position;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = true)
@@ -50,17 +41,14 @@ public class Admin {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(Long adminId, String name, String permanentAddress, String dateOfBirth, String gender,
-			Long contactNo, String emailId, String position, Date createdAt) {
+	public Admin(Long adminId, String name, String location,
+			Long contactNo, String emailId, Date createdAt) {
 		super();
 		this.adminId = adminId;
 		this.name = name;
-		this.permanentAddress = permanentAddress;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
+		this.location = location;
 		this.contactNo = contactNo;
 		this.emailId = emailId;
-		this.position = position;
 		this.createdAt = createdAt;
 }
 
@@ -80,28 +68,12 @@ public class Admin {
 		this.name = name;
 	}
 
-	public String getPermanentAddress() {
-		return permanentAddress;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setPermanentAddress(String permanentAddress) {
-		this.permanentAddress = permanentAddress;
-	}
-
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Long getContactNo() {
@@ -118,14 +90,6 @@ public class Admin {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-	
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
 	}
 
 	public Date getCreatedAt() {

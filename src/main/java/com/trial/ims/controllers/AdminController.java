@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -143,7 +144,7 @@ public class AdminController {
 				"BISAG ADMINISTRATIVE OFFICE"
 		);
 		
-		return "redirect:/";
+		return "redirect:/bisag/admin/admin_list";
 	}
 	
 	public AdminRepo getArepo() {
@@ -185,6 +186,63 @@ public class AdminController {
 	}
 	
 	//---------------------------------- Admin List Completed --------------------------------------//
+	
+	//-------------------------------------- Admin Update ------------------------------------------//
+	
+	// Update Admin
+//	@GetMapping("/update_admin/{id}")
+//    public ModelAndView updateAdmin(@PathVariable("id") long id) {
+//        ModelAndView mv = new ModelAndView("admin/update_admin");
+//        Optional<Admin> admin = adminService.getAdmin(id);
+//        mv.addObject("admin", admin.orElse(new Admin())); // Use an empty Admin object if not found
+//        return mv;
+//    }
+//
+//    @PostMapping("/update_admin")
+//    public String updateAdmin(@ModelAttribute("admin") Admin admin) {
+//        adminService.updateAdmin(admin);
+//        return "redirect:/bisag/admin/admin_list";
+//    }
+	
+	@GetMapping("/update_admin/{id}")
+	public ModelAndView updateAdmin(@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("admin/update_admin");
+		Optional<Admin> admin = adminService.getAdmin(id);
+		mv.addObject("admin", admin.orElse(new Admin()));
+//		adminService.deleteAdmin(id);
+		return mv;
+	}
+	
+	@PostMapping("/update_admin/{id}")
+	public String updateAdmin(@ModelAttribute("admin") Admin admin, @PathVariable("id") long id) {
+		Optional<Admin> existingAdmin = adminService.getAdmin(admin.getAdminId());
+
+	    if (existingAdmin.isPresent()) {
+	        // If the admin exists, update its properties
+	        Admin updatedAdmin = existingAdmin.get();
+	        updatedAdmin.setName(admin.getName());
+	        updatedAdmin.setLocation(admin.getLocation());
+	        updatedAdmin.setContactNo(admin.getContactNo());
+	        updatedAdmin.setEmailId(admin.getEmailId());
+
+	        // Save the updated admin entity
+	        adminService.updateAdmin(updatedAdmin);
+	    }
+		return "redirect:/bisag/admin/admin_list";
+	}
+		
+	//---------------------------------- Admin Update Completed ------------------------------------//
+
+	//-------------------------------------- Admin Delete ------------------------------------------//
+	
+	// Delete Admin
+    @PostMapping("/admin_list/delete/{id}")
+    public String deleteAdmin(@PathVariable("id") long id) {
+        adminService.deleteAdmin(id);
+        return "redirect:/bisag/admin/admin_list";
+    }
+	
+	//--------------------------------- Admin Delete Completed -------------------------------------//
 
 	public InternRepo getIrepo() {
 		return irepo;
@@ -224,9 +282,14 @@ public class AdminController {
 			//Long ID = Long.parseLong(id);
 			Optional<InternApplication> intern = internService.getInternApplication(id);
 			intern.get().setStatus(status); 
+			
+			//////////////////////////////////////////
+			
+			/////////////////////////////////////////////
+			
 			internService.addInternApplication(intern.get());
 			emailService.sendSimpleEmail(intern.get().getEmail(),message, "BISAG INTERNSHIP RESULT");
-			return "redirect:/";
+			return "redirect:/bisag/admin/intern_application";
 		}
 	
 	

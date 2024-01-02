@@ -50,6 +50,18 @@ public class HomeController {
 	public void login(Intern intern) {
 
 	}
+	
+	@GetMapping("/admin_register")
+	public String admin_register() {
+		return "adminregistration";
+	}
+	
+	@PostMapping("/admin_register")
+	public String admin_register(MultipartHttpServletRequest req) {
+		return "adminregistration";
+	}
+	
+	
 
 	@GetMapping("/bisag_internship")
 	public String bisag_internship() {

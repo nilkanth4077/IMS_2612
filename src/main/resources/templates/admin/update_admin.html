@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Admin</title>
+</head>
+<body>
+	<h2>Update Admin</h2>
+	<form th:action="@{'/bisag/admin/update_admin/' + ${admin.adminId}}" th:object="${admin}"
+		method="post">
+		<input type="hidden" th:field="*{adminId}"> 
+		<label for="name">Name:</label>
+		<input type="text" id="name" th:field="*{name}" required>
+		<label for="emailId">Email:</label>
+		<input type="email" id="emailId" th:field="*{emailId}" required>
+		
+		<label for="location">Location:</label>
+		<input type="text" id="location" th:field="*{location}" required>
+		<label for="contactNo">Contact:</label>
+		<input type="tel" id="contactNo" th:field="*{contactNo}" required>
+		<!-- Add other fields as needed -->
+		<button type="submit" onclick="return confirm('Have you checked details ?')">Update</button>
+	</form>
+</body>
+</html>
