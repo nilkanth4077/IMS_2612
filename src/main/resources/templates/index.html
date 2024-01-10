@@ -1,159 +1,154 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" th:href="@{/css/style.css}">
-<link rel="stylesheet" th:href="@{/css/try.css}">
-<style>
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-	overflow-y: auto; /* Enable vertical scrolling for the entire body */
-}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-header {
-	background-color: black;
-	color: white;
-	padding: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
+  <title>IMS</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-h1 {
-	margin: 0;
-}
+  <!-- Favicons -->
+  <link href="./assets/img/favicon.png" rel="icon">
+  <link href="./assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-.button-container {
-	display: flex;
-}
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
-.button-container button {
-	margin-right: 10px;
-	padding: 8px 12px;
-	background-color: white;
-	color: black;
-	border: none;
-	cursor: pointer;
-}
+  <!-- Vendor CSS Files -->
+  <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../static/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../static/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-.button-container button:hover {
-	background-color: #ddd;
-}
+  <!-- Template Main CSS File -->
+  <link href="./assets/css/style.css" rel="stylesheet">
 
-.carousel-container {
-	overflow: hidden;
-	padding: 20px;
-}
-
-.carousel-inner {
-	height: 400px; /* Adjust the height as needed */
-}
-
-.carousel-inner img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.details-container {
-	padding: 20px;
-	text-align: justify;
-}
-
-</style>
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Nov 17 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
 
-	<header>
-		<div class="button-container">
-			<button th:href="@{/login}">Login</button>
-			<button th:href="@{/admin_register}" type="button">
-				<a>Admin</a>
-			</button>
-			<button>
-				<a th:href="@{/bisag_internship}" type="button"
-					class="btn btn-secondary btn-lg">Apply for internship</a>
-			</button>
-		</div>
-		<h1>Login and Registration</h1>
-	</header>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
-	<!-- Carasoul -->
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/bisag_logo.png" alt="">
+        <span class="d-none d-lg-block">BISAG</span>
+      </a>
+      <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
+    </div><!-- End Logo -->
 
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">With captions</h5>
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
 
-			<!-- Slides with captions -->
-			<div id="carouselExampleCaptions" class="carousel slide"
-				data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleCaptions"
-						data-bs-slide-to="0" class="active" aria-current="true"
-						aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleCaptions"
-						data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleCaptions"
-						data-bs-slide-to="2" aria-label="Slide 3"></button>
-				</div>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="assets/img/slides-1.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h5>First slide label</h5>
-							<p>Some representative placeholder content for the first
-								slide.</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="assets/img/slides-2.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h5>Second slide label</h5>
-							<p>Some representative placeholder content for the second
-								slide.</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h5>Third slide label</h5>
-							<p>Some representative placeholder content for the third
-								slide.</p>
-						</div>
-					</div>
-				</div>
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
 
-				<button class="carousel-control-prev" type="button"
-					data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button"
-					data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
+        <li class="nav-item dropdown">
+          <!--<a href="components-cards.html">
+            <button id="detailsButton" class="btn btn-primary custom-margin" th:onclick="'detailsAction(\'' + ${user.id} + '\')">Login</button>
+         </a>-->
+          
 
-			</div>
-			<!-- End Slides with captions -->
+        </li><!-- End Notification Nav -->
 
-		</div>
-	</div>
 
-	<!-- Your login and registration forms go here -->
+        <li class="nav-item dropdown pe-3">
+    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+        <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
+        <a th:href="@{/bisag_internship}" type="button" class="btn btn-primary">Apply for Internship</a>
+    </a><!-- End Profile Iamge Icon -->
+    <!-- End Profile Dropdown Items -->
+</li><!-- End Profile Nav -->
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+
+  <!-- <main id="main" style="width:100%;"> -->
+  <!-- Slides with indicators -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./assets/img/slides-1.jpg" style="width: 100%; height: 400px;" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/img/slides-2.jpg" style="width: 100%; height: 400px;" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="./assets/img/slides-3.jpg" style="width: 100%; height: 400px;" alt="...">
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+  </div><!-- End Slides with indicators --> 
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer" style="margin-left: 40%">
+    <div class="credits text-center d-flex align-items-center">
+      Designed by <a href="https://bootstrapmade.com/">Group-24RH4</a>
+  </div>
+  </footer><!-- End Footer -->
+<!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="../static/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="../static/assets/vendor/quill/quill.min.js"></script>
+  <script src="../static/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="../static/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="../static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/assets/js/main.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" th:href="@{/css/admin-style.css}">
+
+<style>
+/* src/main/resources/static/css/admin-style.css */
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+}
+
+#sidebar {
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	padding-top: 20px;
+}
+
+#sidebar h2 {
+	color: white;
+	text-align: center;
+}
+
+#sidebar ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+#sidebar ul li {
+	padding: 8px;
+	text-align: center;
+}
+
+#sidebar ul li a {
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+}
+
+#sidebar ul li ul li a {
+	color: yellow;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+}
+
+#sidebar ul li a:hover {
+	background-color: #555;
+}
+
+#content {
+	margin-left: 250px;
+	padding: 16px;
+}
+
+#sidebar ul ul {
+	display: none;
+	margin-left: 10px;
+}
+
+#sidebar li:hover>ul {
+	display: block;
+}
+/* Add more styles as needed */
+</style>
+</head>
+<body>
+
+	<div id="sidebar">
+		<h2>Admin Dashboard</h2>
+		<ul>
+			<li><a href="#">Admins</a>
+				<ul>
+					<li><a th:href="@{/bisag/admin/register_admin}">Add Admin</a></li>
+					<li><a th:href="@{/bisag/admin/admin_list}">Manage Admin</a></li>
+				</ul></li>
+			<li><a href="#">Interns</a>
+				<ul>
+					<li><a th:href="@{/bisag/admin/register_intern}">Register
+							Intern</a></li>
+					<li><a th:href="@{/bisag/admin/intern_application}">Intern
+							Applications</a></li>
+				</ul></li>
+			<!-- Add more navigation links and submenus as needed -->
+		</ul>
+	</div>
+
+</body>
+</html>

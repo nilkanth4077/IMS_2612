@@ -7,5 +7,5 @@ import com.trial.ims.entities.InternApplication;
 
 @Repository
 public interface InternApplicationRepo extends JpaRepository<InternApplication, Long> {
-	
+
 }

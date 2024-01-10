@@ -6,6 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "internapplication")
@@ -15,33 +21,55 @@ public class InternApplication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+	@NotNull
+	@Size(min=2, max=20)
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Only characters are allowed")
     @Column(name = "first_name")
     private String firstName;
 
+	@NotNull
+	@Size(min=2, max=20)
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Only characters are allowed")
     @Column(name = "last_name")
     private String lastName;
 
+	@NotNull
+	@Size(min = 10, max = 10, message = "Contact number must be exactly 10 characters")
+	@Pattern(regexp = "^[0-9]+$", message = "Only integers are allowed")
     @Column(name = "contact_number")
     private String contactNo;
 
+	@NotNull
+	@Email
     @Column(name = "email")
     private String email;
 
+	@NotNull
     @Column(name = "collegeName")
     private String collegeName;
     
+	@NotNull
 	@Column(name = "branch_name")
     private String branch;
 	
+	@NotNull
+	@Pattern(regexp = ".*\\.pdf$", message = "File must be a PDF with extension '.pdf'")
 	@Column(name = "icard_image", length = 1000)
     private String icardImage;
     
+	@NotNull
+	@Pattern(regexp = ".*\\.pdf$", message = "File must be a PDF with extension '.pdf'")
     @Column(name = "noc_pdf", length = 1000)
     private String nocPdf;
     
+	@NotNull
+	@Min(value = 1, message = "Enter a value greater than or equal to 1")
+    @Max(value = 8, message = "Enter a value less than or equal to 8")
     @Column(name = "semester")
     private int semester;
 
+	@NotNull
+	@Pattern(regexp = ".*\\.pdf$", message = "File must be a PDF with extension '.pdf'")
 	@Column(name = "resume_pdf", length = 1000)
 	private String resumePdf;
 	

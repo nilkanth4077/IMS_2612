@@ -78,12 +78,23 @@ public class AdminController {
     }
 	
 	
+	//------------------------------ Admin Dashboard ------------------------------//
+	
+	@GetMapping("/admin_dash")
+	public String adminDash()
+	{
+		return "admin/admin_dash";
+	}
+	
+	//--------------------------- Admin Dashboard Done ----------------------------//
+	
+	
 	//Intern Registration///////////////////////////////////////////////
 	
 	@GetMapping("/register_intern")
 	public String registerIntern()
 	{
-		return "admin/internregistration";
+		return "admin/intern_registration";
 	}
 	
 	@PostMapping("/register_intern")
@@ -111,7 +122,7 @@ public class AdminController {
 	@GetMapping("/register_admin")
 	public String registerAdmin()
 	{
-		return "admin/adminregistration";
+		return "admin/admin_registration";
 	}
 	
 	@PostMapping("/register_admin")
@@ -188,22 +199,7 @@ public class AdminController {
 	//---------------------------------- Admin List Completed --------------------------------------//
 	
 	//-------------------------------------- Admin Update ------------------------------------------//
-	
-	// Update Admin
-//	@GetMapping("/update_admin/{id}")
-//    public ModelAndView updateAdmin(@PathVariable("id") long id) {
-//        ModelAndView mv = new ModelAndView("admin/update_admin");
-//        Optional<Admin> admin = adminService.getAdmin(id);
-//        mv.addObject("admin", admin.orElse(new Admin())); // Use an empty Admin object if not found
-//        return mv;
-//    }
-//
-//    @PostMapping("/update_admin")
-//    public String updateAdmin(@ModelAttribute("admin") Admin admin) {
-//        adminService.updateAdmin(admin);
-//        return "redirect:/bisag/admin/admin_list";
-//    }
-	
+		
 	@GetMapping("/update_admin/{id}")
 	public ModelAndView updateAdmin(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("admin/update_admin");
@@ -227,6 +223,21 @@ public class AdminController {
 
 	        // Save the updated admin entity
 	        adminService.updateAdmin(updatedAdmin);
+	        
+	        emailService.sendSimpleEmail(
+	                updatedAdmin.getEmailId(),
+	                "Notification: Admin Information Updated" + "\r\n\r\n" +
+	                "Dear " + updatedAdmin.getName() + ",\r\n\r\n"
+	                        + "We want to inform you that your admin information has been successfully updated. Please review the changes made:\r\n\r\n"
+	                        + "Name: " + updatedAdmin.getName() + "\r\n"
+	                        + "Location: " + updatedAdmin.getLocation() + "\r\n"
+	                        + "Contact Number: " + updatedAdmin.getContactNo() + "\r\n"
+	                        + "Email: " + updatedAdmin.getEmailId() + "\r\n\r\n"
+	                        + "Thank you for keeping your information up-to-date.\r\n\r\n"
+	                        + "Best regards,\r\n\r\n"
+	                        + "BISAG-N Administration Team",
+	                        "BISAG ADMINISTRATIVE OFFICE"
+	        );
 	    }
 		return "redirect:/bisag/admin/admin_list";
 	}
@@ -283,15 +294,10 @@ public class AdminController {
 			Optional<InternApplication> intern = internService.getInternApplication(id);
 			intern.get().setStatus(status); 
 			
-			//////////////////////////////////////////
-			
-			/////////////////////////////////////////////
-			
 			internService.addInternApplication(intern.get());
 			emailService.sendSimpleEmail(intern.get().getEmail(),message, "BISAG INTERNSHIP RESULT");
 			return "redirect:/bisag/admin/intern_application";
 		}
-	
-	
+
 
 }

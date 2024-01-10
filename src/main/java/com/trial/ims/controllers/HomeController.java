@@ -16,6 +16,7 @@ import com.trial.ims.entities.InternApplication;
 import com.trial.ims.repositories.InternApplicationRepo;
 import com.trial.ims.services.EmailSenderService;
 
+
 @Controller
 @Validated
 public class HomeController {
@@ -72,13 +73,13 @@ public class HomeController {
 	public String bisag_iternship(MultipartHttpServletRequest req, InternApplication intern)
 			throws IllegalStateException, Exception {
 
-		
 		//upload noc and image
 		intern.setIcardImage(uploadfile(req.getFile("icardImageone"), "icard"));
 		intern.setNocPdf(uploadfile(req.getFile("nocPdfone"), "noc"));
 		intern.setResumePdf(uploadfile(req.getFile("resumePdfone"), "resume"));
 		repo.save(intern);
 		emailService.sendSimpleEmail(intern.getEmail(), "You have successfully applied for bisag internship!", "BISAG INTERNSHIP");
+		
 		return "index";
 	}
 

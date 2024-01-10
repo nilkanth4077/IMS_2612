@@ -56,4 +56,6 @@ public class InternService {
 		internApplicationRepo.save(intern);
 	}
 
+
+
 }
